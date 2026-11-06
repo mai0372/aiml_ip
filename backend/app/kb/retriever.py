@@ -267,3 +267,4 @@ class RuleRetriever:
             source=source,
             verification=VerificationResult(status=status, checks=checks)
         )
+

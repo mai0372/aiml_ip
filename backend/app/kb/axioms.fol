@@ -18,16 +18,12 @@ forall p, a: ~(Perm(p, a) & Forb(p, a))
 # A party cannot be simultaneously obligated and forbidden to perform an action.
 forall p, a: ~(Obl(p, a) & Forb(p, a))
 
-# Axiom 4: Prohibition equivalence
-# Being forbidden is equivalent to not being permitted.
-forall p, a: (Forb(p, a) <-> ~Perm(p, a))
-
 # ==============================================================================
 # Action Conflict Pairs
 # Actions that cannot be simultaneously permitted or obligated.
 # ==============================================================================
 
-# Axiom 5: Unrestricted Entry vs Prior Notice Obligation
+# Axiom 4: Unrestricted Entry vs Prior Notice Obligation
 # Entering without notice contradicts requiring prior notice.
 forall p: ~(Perm(p, EnterPremises(unrestricted)) & Obl(p, EnterPremises(notice_24h)))
 

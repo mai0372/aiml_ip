@@ -130,3 +130,4 @@ class ContractSegmenter:
                 clause_idx += 1
 
         return segments
+

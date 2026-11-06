@@ -40,3 +40,4 @@ When a legal researcher or attorney reviews and certifies rules in `backend/app/
 - [ ] **Check 3: Judicial Precedents**: Note whether any landmark Supreme Court or High Court judgment impacts the section (e.g. *Kailash Nath Associates v. DDA* for s. 74 penalty vs reasonable compensation).
 - [ ] **Check 4: State Overrides**: Document state amendments (e.g. state-specific stamp duty or registration exemptions).
 - [ ] **Check 5: Update Metadata**: Set `reviewed: true`, record `reviewed_by: "Advocate <Name>"`, and record the current date in `reviewed_on: "YYYY-MM-DD"`.
+

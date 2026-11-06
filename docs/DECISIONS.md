@@ -69,3 +69,4 @@ This document records the architectural decisions, trade-offs, and defaults adop
   - Single restrained accent: Deep ink blue / slate teal.
   - Typography: Inter for UI chrome, JetBrains Mono for formal logic, Source Serif 4 / Georgia for document reading.
   - Custom SVG proof tree visualization for inspectable, lightweight resolution DAGs.
+

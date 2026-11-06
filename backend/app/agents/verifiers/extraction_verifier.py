@@ -161,3 +161,4 @@ class ExtractionVerifier:
 
         status = VerificationStatus.VERIFIED if is_verified else VerificationStatus.NEEDS_REVIEW
         return clause, VerificationResult(status=status, checks=checks)
+

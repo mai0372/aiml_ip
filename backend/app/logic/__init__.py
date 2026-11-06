@@ -40,3 +40,4 @@ __all__ = [
     "ResolutionProver", "ProofResult", "ProofStep", "ResolutionOutcome",
     "IndependentProofChecker", "ProofVerificationReport"
 ]
+

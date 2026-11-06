@@ -85,3 +85,4 @@ class ExplanationVerifier:
         status = VerificationStatus.VERIFIED if is_verified and all(c.passed for c in combined_checks) else VerificationStatus.NEEDS_REVIEW
         finding.verification = VerificationResult(status=status, checks=combined_checks)
         return finding
+

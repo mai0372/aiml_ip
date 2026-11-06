@@ -108,3 +108,4 @@ class DocumentIngester:
             clean_text, count = PIIFilter.redact(clean_text)
             metadata["redactions"] = count
         return clean_text, metadata
+

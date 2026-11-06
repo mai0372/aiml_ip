@@ -218,3 +218,4 @@ def parse_fopl(text: str) -> Formula:
     """Helper function to parse a raw string into a Formula AST."""
     tokens = Lexer(text).tokenize()
     return Parser(tokens).parse()
+

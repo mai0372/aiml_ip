@@ -343,3 +343,4 @@ class CNFConverter:
         elif isinstance(f, Or):
             return self._extract_literals(f.left) + self._extract_literals(f.right)
         raise ValueError(f"Formula not in CNF: unexpected node type: {type(f)}")
+

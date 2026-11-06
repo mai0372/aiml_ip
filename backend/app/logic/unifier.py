@@ -145,3 +145,4 @@ def format_substitution(subst: Optional[Dict[str, Term]]) -> str:
         return "{}"
     items = [f"{var} ↦ {term}" for var, term in sorted(subst.items())]
     return "{" + ", ".join(items) + "}"
+

@@ -179,3 +179,4 @@ The frontend is built with React 18, Vite, TypeScript (strict), and Tailwind CSS
   - Academic syllabus showcase enabling custom WFF input, AST inspection, 9-step CNF step-through, and animated resolution tree player.
 - **Rulebook & Sources Route (`/rules`, `/sources`)**:
   - Transparent catalog of Indian tenancy laws, review statuses, and official India Code links.
+

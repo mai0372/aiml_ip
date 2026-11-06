@@ -152,3 +152,4 @@ class Finding(BaseModel):
     source: Optional[StatutorySource] = None
     verification: VerificationResult
     proof: Optional[Dict[str, Any]] = None  # Populated for FOPL conflicts / query answers
+

@@ -643,3 +643,4 @@ class ResolutionProver:
                     queue.append(s.parent2_id)
 
         return sorted(list(conflicting_leaf_sources))
+

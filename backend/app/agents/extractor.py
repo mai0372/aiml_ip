@@ -351,3 +351,4 @@ def get_extractor() -> LLMProvider:
             return OfflineExtractor()
 
     return OfflineExtractor()
+
