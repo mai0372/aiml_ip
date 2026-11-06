@@ -1,0 +1,217 @@
+# ==============================================================================
+# ClauseLens Seed Rule Pack: Indian Residential Tenancy (Generic Pack)
+# Jurisdiction: Republic of India (Residential Tenancy)
+# Notice: Rules are based on Indian law as summarised, subject to state variations. Not legal advice.
+# NOTE: source_text is intentionally left empty until certified by an Indian legal practitioner.
+# ==============================================================================
+
+rules:
+  - id: "R01"
+    title: "Security deposit exceeds 2 months' rent"
+    kind: "legal_risk"
+    severity: "high"
+    formal_condition: "action == 'PayDeposit' and params.months > 2"
+    target_clause_types: ["deposit"]
+    plain_explanation: "The agreement demands a security deposit exceeding two months of monthly rent."
+    why_it_matters: "Under standard residential tenancy reforms, locking up disproportionate capital places an undue financial burden on tenants and exacerbates recovery disputes upon tenancy termination."
+    suggestion: "Request reducing the security deposit to a maximum of two months' rent: 'The Tenant agrees to furnish an interest-free security deposit equivalent to two (2) months of rent only, refundable within 30 days of vacating.'"
+    source: "Model Tenancy Act, 2021, Chapter V, Section 11(1)"
+    statute_name: "Model Tenancy Act, 2021"
+    section: "Chapter V, Section 11(1)"
+    source_text: ""
+    source_url: "https://mohua.gov.in/upload/uploadfiles/files/Model_Tenancy_Act_English.pdf"
+    retrieved_on: "2026-11-06"
+    reviewed: false
+    reviewed_by: null
+    reviewed_on: null
+    applicability: "model law, state adoption varies"
+    jurisdiction_note: "Model law or general principle; applicability varies by state. Not legal advice. Applies only where the state has adopted the Model Tenancy Act."
+
+  - id: "R02"
+    title: "Landlord entry without prior written notice"
+    kind: "legal_risk"
+    severity: "high"
+    formal_condition: "action == 'EnterPremises' and modality == 'permission' and (params.notice_days == 0 or 'unrestricted' in extra)"
+    target_clause_types: ["entry"]
+    plain_explanation: "The agreement permits the landlord to enter or inspect the premises at any time without advance written notice."
+    why_it_matters: "A residential lease conveys exclusive possession and the covenant of quiet enjoyment. Unrestricted entry infringes tenant privacy and statutory entry guidelines."
+    suggestion: "Insist on mandatory 24-hour advance written notice: 'The Landlord or their authorized agent may enter the premises for inspection only after serving at least 24 hours prior written notice, during reasonable daytime hours (9:00 AM to 6:00 PM).'"
+    source: "Model Tenancy Act, 2021, Chapter IV, Section 15(1)"
+    statute_name: "Model Tenancy Act, 2021"
+    section: "Chapter IV, Section 15(1)"
+    source_text: ""
+    source_url: "https://mohua.gov.in/upload/uploadfiles/files/Model_Tenancy_Act_English.pdf"
+    retrieved_on: "2026-11-06"
+    reviewed: false
+    reviewed_by: null
+    reviewed_on: null
+    applicability: "model law, state adoption varies"
+    jurisdiction_note: "Model law or general principle; applicability varies by state. Not legal advice. Applies only where the state has adopted the Model Tenancy Act."
+
+  - id: "R03"
+    title: "Rent increase without advance written notice"
+    kind: "legal_risk"
+    severity: "medium"
+    formal_condition: "action == 'IncreaseRent' and (params.notice_months == 0 or params.notice_days < 90)"
+    target_clause_types: ["rent_increase", "rent"]
+    plain_explanation: "The agreement allows mid-term or renewal rent escalation without three months' advance written notification."
+    why_it_matters: "Sudden or unilateral rent revisions undermine housing stability. Tenancy standards mandate a minimum three months' written notice prior to rent revision to allow the tenant reasonable time to evaluate or negotiate."
+    suggestion: "Incorporate a structured notice requirement: 'Any revision of monthly rent shall be notified in writing to the Tenant at least three (3) months prior to the expiry of the existing term, subject to mutual agreement.'"
+    source: "Model Tenancy Act, 2021, Chapter III, Section 9(1)"
+    statute_name: "Model Tenancy Act, 2021"
+    section: "Chapter III, Section 9(1)"
+    source_text: ""
+    source_url: "https://mohua.gov.in/upload/uploadfiles/files/Model_Tenancy_Act_English.pdf"
+    retrieved_on: "2026-11-06"
+    reviewed: false
+    reviewed_by: null
+    reviewed_on: null
+    applicability: "model law, state adoption varies"
+    jurisdiction_note: "Model law or general principle; applicability varies by state. Not legal advice. Applies only where the state has adopted the Model Tenancy Act."
+
+  - id: "R04"
+    title: "Remedy allowing disconnection of essential utilities"
+    kind: "legal_risk"
+    severity: "high"
+    formal_condition: "action == 'CutUtilities' and party == 'landlord'"
+    target_clause_types: ["utilities", "penalty"]
+    plain_explanation: "The agreement empowers the landlord to disconnect essential services (water, electricity, gas) upon rent dispute or default."
+    why_it_matters: "Severing basic essential supplies as extra-judicial coercion is unlawful across Indian tenancy jurisdictions. Landlords are strictly barred from withholding essential services regardless of rental disputes."
+    suggestion: "Delete the disconnection clause entirely: 'The Landlord shall not withhold or cut off any essential supply or service (water, electricity, access) enjoyed by the Tenant on the premises during the subsistence of the tenancy.'"
+    source: "Model Tenancy Act, 2021, Chapter IV, Section 20(1)"
+    statute_name: "Model Tenancy Act, 2021"
+    section: "Chapter IV, Section 20(1)"
+    source_text: ""
+    source_url: "https://mohua.gov.in/upload/uploadfiles/files/Model_Tenancy_Act_English.pdf"
+    retrieved_on: "2026-11-06"
+    reviewed: false
+    reviewed_by: null
+    reviewed_on: null
+    applicability: "model law, state adoption varies"
+    jurisdiction_note: "Model law or general principle; applicability varies by state. Not legal advice. Applies only where the state has adopted the Model Tenancy Act."
+
+  - id: "R05"
+    title: "Excessive forfeiture or penalty clause"
+    kind: "legal_risk"
+    severity: "high"
+    formal_condition: "action == 'ForfeitDeposit' and (params.percent >= 100 or params.ratio >= 1.0)"
+    target_clause_types: ["penalty", "deposit"]
+    plain_explanation: "The agreement stipulates full automatic forfeiture of the entire security deposit for minor breaches or premature termination."
+    why_it_matters: "Section 74 of the Indian Contract Act prohibits in terrorem penalty stipulations; a claimant is entitled only to reasonable compensation not exceeding actual loss proved."
+    suggestion: "Clarify that deductions must reflect actual documented losses: 'In the event of breach, the Landlord shall only be entitled to deduct proven, actual damages or arrears from the security deposit, with the remaining balance promptly refunded.'"
+    source: "Indian Contract Act, 1872, Section 74"
+    statute_name: "Indian Contract Act, 1872"
+    section: "Section 74"
+    source_text: ""
+    source_url: "https://www.indiacode.nic.in/handle/123456789/2187"
+    retrieved_on: "2026-11-06"
+    reviewed: false
+    reviewed_by: null
+    reviewed_on: null
+    applicability: "central act"
+    jurisdiction_note: "Central Act. Governs general contract law across India. Applicability of liquidated damages vs penalties subject to judicial determination."
+
+  - id: "R06"
+    title: "Asymmetric termination notice periods"
+    kind: "advisory"
+    severity: "medium"
+    formal_condition: "action == 'Terminate' and notice_asymmetry_detected"
+    target_clause_types: ["termination"]
+    plain_explanation: "The contract gives the landlord a short termination notice period while imposing a significantly longer notice period or penalty on the tenant."
+    why_it_matters: "Unbalanced notice periods create one-sided contractual vulnerability and may be held unconscionable or unfair under general equity principles."
+    suggestion: "Propose mutual parity in notice periods: 'Either party may terminate this agreement by providing one (1) month of written notice or rent in lieu thereof.'"
+    source: "Indian Contract Act, 1872 & General Contract Principles"
+    statute_name: "Indian Contract Act, 1872"
+    section: "Sections 14, 23 (Free Consent & Public Policy Principles)"
+    source_text: ""
+    source_url: "https://www.indiacode.nic.in/handle/123456789/2187"
+    retrieved_on: "2026-11-06"
+    reviewed: false
+    reviewed_by: null
+    reviewed_on: null
+    applicability: "central act"
+    jurisdiction_note: "Model law or general principle; applicability varies by state. Not legal advice."
+
+  - id: "R07"
+    title: "Tenancy term exceeding 11 months without registration clause"
+    kind: "advisory"
+    severity: "medium"
+    formal_condition: "action == 'Renew' and params.months > 11 and registration_absent"
+    target_clause_types: ["term", "registration"]
+    plain_explanation: "The agreement specifies a tenancy term exceeding 11 months (or over 1 year) without providing for mandatory registration."
+    why_it_matters: "Under Section 17(1)(d) of the Registration Act, 1908, leases of immovable property from year to year or exceeding one year require compulsory registration. Unregistered leases over one year cannot be admitted as evidence of lease terms in court."
+    suggestion: "Either limit the agreement to an 11-month license or include registration provisions: 'This deed shall be registered before the Sub-Registrar having jurisdiction, with registration fees and stamp duty borne equally by both parties.'"
+    source: "Registration Act, 1908, Section 17(1)(d)"
+    statute_name: "Registration Act, 1908"
+    section: "Section 17(1)(d)"
+    source_text: ""
+    source_url: "https://www.indiacode.nic.in/handle/123456789/2347"
+    retrieved_on: "2026-11-06"
+    reviewed: false
+    reviewed_by: null
+    reviewed_on: null
+    applicability: "central act"
+    jurisdiction_note: "Central Act. Governs mandatory document registration across India."
+
+  - id: "R08"
+    title: "Notice period shorter than statutory month-to-month default"
+    kind: "advisory"
+    severity: "low"
+    formal_condition: "action == 'Terminate' and params.notice_days < 15 and params.notice_days > 0"
+    target_clause_types: ["termination"]
+    plain_explanation: "The notice period for termination is less than 15 days."
+    why_it_matters: "Section 106 of the Transfer of Property Act, 1882 sets a statutory default of 15 days' notice for month-to-month residential leases. Shorter periods leave insufficient time for residential relocation."
+    suggestion: "Extend the notice period: 'Notice for termination shall not be less than thirty (30) days in writing.'"
+    source: "Transfer of Property Act, 1882, Section 106"
+    statute_name: "Transfer of Property Act, 1882"
+    section: "Section 106"
+    source_text: ""
+    source_url: "https://www.indiacode.nic.in/handle/123456789/2338"
+    retrieved_on: "2026-11-06"
+    reviewed: false
+    reviewed_by: null
+    reviewed_on: null
+    applicability: "central act"
+    jurisdiction_note: "Central Act. Binding default in absence of local rent control enactment."
+
+  - id: "R09"
+    title: "Lock-in period coupled with heavy exit penalty"
+    kind: "advisory"
+    severity: "medium"
+    formal_condition: "action == 'Terminate' and has_lock_in and lock_in_penalty_severe"
+    target_clause_types: ["lock_in", "penalty"]
+    plain_explanation: "The agreement specifies a rigid lock-in period and mandates payment of full rent for the unexpired lock-in upon premature exit."
+    why_it_matters: "Indian courts have repeatedly held that landlords have a duty to mitigate damages by re-letting; demanding rent for the entire unexpired period without proving actual loss is often deemed an unenforceable penalty."
+    suggestion: "Propose a reasonable exit window: 'In case of relocation due to employment or emergency during the lock-in, the Tenant may terminate with two (2) months' notice or equivalent rent without further penalty.'"
+    source: "Indian Contract Act, 1872, Section 74 & Judicial Precedents"
+    statute_name: "Indian Contract Act, 1872"
+    section: "Section 74"
+    source_text: ""
+    source_url: "https://www.indiacode.nic.in/handle/123456789/2187"
+    retrieved_on: "2026-11-06"
+    reviewed: false
+    reviewed_by: null
+    reviewed_on: null
+    applicability: "central act"
+    jurisdiction_note: "Model law or general principle; applicability varies by state. Not legal advice."
+
+  - id: "R10"
+    title: "Missing vital residential tenancy protections"
+    kind: "missing"
+    severity: "medium"
+    formal_condition: "cwa_missing_check"
+    target_clause_types: ["deposit", "repairs", "termination", "utilities"]
+    plain_explanation: "The agreement omits one or more essential terms: explicit deposit refund timeline, allocation of major structural repair responsibilities, or clear utilities apportionment."
+    why_it_matters: "Ambiguity is the primary driver of landlord-tenant disputes. Without an explicit timeline for deposit return and repair obligations, tenants bear high financial risk."
+    suggestion: "Request adding standard protective clauses defining: (1) Deposit refund within 30 days of surrender, (2) Landlord responsibility for major structural repairs, and (3) Utilities meter reading procedures."
+    source: "Model Tenancy Act & Standard Drafting Guidelines"
+    statute_name: "Model Tenancy Act, 2021"
+    section: "Second Schedule (Division of Maintenance Responsibilities)"
+    source_text: ""
+    source_url: "https://mohua.gov.in/upload/uploadfiles/files/Model_Tenancy_Act_English.pdf"
+    retrieved_on: "2026-11-06"
+    reviewed: false
+    reviewed_by: null
+    reviewed_on: null
+    applicability: "model law, state adoption varies"
+    jurisdiction_note: "Model law or general principle; applicability varies by state. Not legal advice."

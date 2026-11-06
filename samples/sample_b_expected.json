@@ -1,0 +1,24 @@
+{
+  "sample_id": "sample_b_problematic",
+  "expected_clause_count": 16,
+  "expected_conflicts_count": 2,
+  "expected_conflicting_pairs": [
+    ["Clause_3", "Clause_12"],
+    ["Clause_7", "Clause_16"]
+  ],
+  "expected_rule_hits": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05"
+  ],
+  "expected_missing_items": [
+    "Deposit Refund Timeline"
+  ],
+  "expected_severity_summary": {
+    "high": 4,
+    "medium": 2,
+    "low": 0
+  }
+}

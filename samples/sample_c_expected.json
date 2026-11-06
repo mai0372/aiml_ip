@@ -1,0 +1,12 @@
+{
+  "sample_id": "sample_c_messy",
+  "expected_clause_count": 8,
+  "expected_conflicts_count": 0,
+  "expected_rule_hits": [],
+  "expected_missing_items": [],
+  "expected_severity_summary": {
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  }
+}

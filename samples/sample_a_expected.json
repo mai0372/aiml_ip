@@ -1,0 +1,17 @@
+{
+  "sample_id": "sample_a_fair",
+  "expected_clause_count": 7,
+  "expected_conflicts_count": 0,
+  "expected_rule_hits": [
+    "R10"
+  ],
+  "expected_missing_items": [
+    "Deposit Refund Timeline",
+    "Repair & Maintenance Allocation"
+  ],
+  "expected_severity_summary": {
+    "high": 0,
+    "medium": 1,
+    "low": 0
+  }
+}
