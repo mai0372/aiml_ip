@@ -70,8 +70,13 @@ class ContractSegmenter:
                 end_pos = len(text)
 
             clause_raw_text = text[start_pos:end_pos].strip()
-            # Skip boilerplate preamble or witness sections if too short
+            # Skip boilerplate preamble or witness sections
             if len(clause_raw_text) < 15 and ("witness" in clause_raw_text.lower() or "whereas" in clause_raw_text.lower()):
+                continue
+
+            # Skip witness lists or signature blocks after WITNESSES / IN WITNESS WHEREOF
+            witness_marker = re.search(r"\b(witnesses|in witness whereof)\b", text[:start_pos], re.IGNORECASE)
+            if witness_marker and len(clause_raw_text) < 60:
                 continue
 
             # Strip header prefix from body text
