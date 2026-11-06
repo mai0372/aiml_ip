@@ -228,11 +228,11 @@ class AnalysisPipeline:
                     pair_key = (contract_conflicts[0], contract_conflicts[1])
                     if pair_key not in proved_conflict_pairs:
                         proved_conflict_pairs.add(pair_key)
-                        
+
                         # Stage 7: Independent Proof Verifier Check
                         proof_dict = res.to_dict()
                         v_report = self.proof_checker.verify_proof(proof_dict)
-                        
+
                         finding = Explainer.explain_conflict(
                             conflict_id=f"F_CONFLICT_{pair_key[0]}_{pair_key[1]}",
                             clause_ids=contract_conflicts,

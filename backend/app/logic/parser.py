@@ -73,7 +73,7 @@ class Parser:
         if curr.type in (TokenType.FORALL, TokenType.EXISTS):
             is_forall = (curr.type == TokenType.FORALL)
             self.pos += 1
-            
+
             # Read comma-separated variables: forall x, y:
             var_tokens: List[Token] = []
             var_token = self._expect(TokenType.IDENTIFIER, "variable name after quantifier")

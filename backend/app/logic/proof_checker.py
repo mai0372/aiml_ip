@@ -157,8 +157,8 @@ class IndependentProofChecker:
 
         # Find candidate matching literal in parent 1
         p1_candidates = [
-            l for l in p1.literals
-            if l.is_negated == l1_neg and l.predicate.name == l1_name
+            lit for lit in p1.literals
+            if lit.is_negated == l1_neg and lit.predicate.name == l1_name
         ]
         if not p1_candidates:
             errors.append(f"Step {sid}: Resolving literal '{lit1_raw}' (negated={l1_neg}) not present in parent 1 ({p1}).")
@@ -166,8 +166,8 @@ class IndependentProofChecker:
 
         # Find candidate matching literal in parent 2
         p2_candidates = [
-            l for l in p2.literals
-            if l.is_negated == l2_neg and l.predicate.name == l2_name
+            lit for lit in p2.literals
+            if lit.is_negated == l2_neg and lit.predicate.name == l2_name
         ]
         if not p2_candidates:
             errors.append(f"Step {sid}: Resolving literal '{lit2_raw}' (negated={l2_neg}) not present in parent 2 ({p2}).")

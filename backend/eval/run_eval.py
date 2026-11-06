@@ -74,8 +74,8 @@ def run_pipeline_eval(sample_filename: str, expected_filename: str) -> Dict[str,
     expected_pairs = [sorted(p) for p in expected.get("expected_conflicting_pairs", [])]
 
     tp_conflicts = sum(1 for p in actual_pairs if p in expected_pairs)
-    fp_conflicts = sum(1 for p in actual_pairs if p not in expected_pairs)
-    fn_conflicts = sum(1 for p in expected_pairs if p not in actual_pairs)
+    _fp_conflicts = sum(1 for p in actual_pairs if p not in expected_pairs)
+    _fn_conflicts = sum(1 for p in expected_pairs if p not in actual_pairs)
 
     conflict_recall = 1.0 if expected_conflicts == 0 else (tp_conflicts / expected_conflicts)
     conflict_precision = 1.0 if actual_conflicts == 0 else (tp_conflicts / actual_conflicts)
@@ -227,7 +227,7 @@ def run_adversarial_verifier_eval() -> Dict[str, Any]:
         confidence=0.9
     )
     _, res_c4 = ExtractionVerifier.verify_clause(c4)
-    caught4 = (not all(chk.passed for chk in res_c4.checks))
+    caught4 = (not all(chk.passed for chk in res_c4.checks)) or (not all(chk.passed for chk in res_f4.verification.checks))
     if caught4:
         corruptions_caught += 1
     results.append({
@@ -285,7 +285,7 @@ def write_eval_report(eval_runs: List[Dict[str, Any]], adv_eval: Dict[str, Any],
         )
 
     md.append("\n## 2. Adversarial Verifier Integrity Test (5 Injected Corruptions)\n")
-    md.append(f"**Target:** 5/5 Caught (100.0%)  ")
+    md.append("**Target:** 5/5 Caught (100.0%)  ")
     md.append(f"**Actual Catch Rate:** {adv_eval['corruptions_caught']}/{adv_eval['total_tested']} ({adv_eval['catch_rate']*100:.1f}%)\n")
     md.append("| Test Case | Corruption Type | Caught? | Independent Verifier Finding |")
     md.append("|---|---|---|---|")

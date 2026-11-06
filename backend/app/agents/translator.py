@@ -80,12 +80,12 @@ class ClauseTranslator:
 
         # 6. Basic Rent and Deposit
         if action == ActionOntology.PAY_RENT:
-            formula = f"Obl(tenant, PayRent)"
+            formula = "Obl(tenant, PayRent)"
             expl = "Tenant is obligated to pay monthly rent."
             return formula, expl
 
         if action == ActionOntology.PAY_DEPOSIT:
-            formula = f"Obl(tenant, PayDeposit)"
+            formula = "Obl(tenant, PayDeposit)"
             expl = "Tenant is obligated to pay security deposit."
             return formula, expl
 

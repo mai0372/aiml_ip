@@ -25,7 +25,7 @@ class RuleRetriever:
         if rule_file_path is None:
             base_dir = os.path.dirname(os.path.abspath(__file__))
             rule_file_path = os.path.join(base_dir, "rules", "in_residential_generic.yaml")
-        
+
         self.rule_file_path = rule_file_path
         self.rules: List[Dict[str, Any]] = []
         self._load_rules()
@@ -43,7 +43,7 @@ class RuleRetriever:
         for r in self.rules:
             text = f"{r.get('title', '')} {r.get('plain_explanation', '')} {r.get('why_it_matters', '')} {r.get('source', '')}"
             self.rule_corpus.append(text)
-        
+
         self.vectorizer = TfidfVectorizer(stop_words="english")
         if self.rule_corpus:
             self.tfidf_matrix = self.vectorizer.fit_transform(self.rule_corpus)
@@ -63,7 +63,7 @@ class RuleRetriever:
         """Lexical TF-IDF retrieval of candidate legal rules."""
         if self.tfidf_matrix is None or not text.strip():
             return []
-        
+
         query_vec = self.vectorizer.transform([text])
         sims = (self.tfidf_matrix * query_vec.T).toarray().flatten()
         top_indices = np.argsort(sims)[::-1][:top_k]
@@ -78,7 +78,6 @@ class RuleRetriever:
     def evaluate_rules_on_clauses(self, clauses: List[ClauseIR]) -> List[Finding]:
         """Evaluates statutory rules across all extracted clauses."""
         findings: List[Finding] = []
-        clause_map = {c.id: c for c in clauses}
 
         # Check per-clause rules
         for c in clauses:
@@ -223,7 +222,7 @@ class RuleRetriever:
             passed=bool(source.source_url),
             detail="Valid URL to official government portal (indiacode.nic.in or mohua.gov.in)" if source.source_url else "Missing official portal URL"
         ))
-        
+
         has_verified_text = bool(source.source_text.strip()) and source.reviewed
         checks.append(VerificationCheck(
             name="Statutory Text Certified",

@@ -189,7 +189,7 @@ class Predicate:
             return None
         if not (arg1.is_numeric and arg2.is_numeric):
             return None
-        
+
         v1, v2 = arg1.numeric_value, arg2.numeric_value
         if v1 is None or v2 is None:
             return None
@@ -368,7 +368,7 @@ class Clause:
                 continue
             else:
                 remaining_lits.append(lit)
-        
+
         # Deduplicate literals
         deduped: List[Literal] = []
         for lit in remaining_lits:

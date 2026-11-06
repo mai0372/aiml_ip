@@ -391,7 +391,7 @@ class ResolutionProver:
                     if arith_simplified is None:
                         # Tautology due to arithmetic True
                         continue
-                    
+
                     is_arithmetic_step = (arith_simplified != resolvent_clause)
                     resolvent_clause = arith_simplified
 
@@ -412,7 +412,7 @@ class ResolutionProver:
 
                     rule_used = "procedural_arithmetic" if is_arithmetic_step and resolvent_clause.is_empty() else "resolution"
                     explanation = self._build_explanation(given, other, lit1, lit2, mgu, resolvent_clause, is_arithmetic_step)
-                    
+
                     step = ProofStep(
                         step_id=resolvent_id,
                         parent1_id=given.clause_id,
@@ -478,7 +478,7 @@ class ResolutionProver:
         for idx, cl in enumerate(unprocessed):
             length = len(cl.literals)
             is_sos = (sos_clause_ids is not None and bool(cl.provenance_sources & sos_clause_ids))
-            
+
             if strategy == "unit_sos":
                 # Unit clauses prioritized (0 or 1), then SOS clauses, then length
                 unit_weight = 0 if length <= 1 else 100
@@ -555,8 +555,8 @@ class ResolutionProver:
 
     def _is_tautology(self, clause: Clause) -> bool:
         """Checks if clause contains both P and ¬P."""
-        pos = [l.predicate for l in clause.literals if not l.is_negated]
-        neg = [l.predicate for l in clause.literals if l.is_negated]
+        pos = [lit.predicate for lit in clause.literals if not lit.is_negated]
+        neg = [lit.predicate for lit in clause.literals if lit.is_negated]
         for p in pos:
             for n in neg:
                 if p == n:

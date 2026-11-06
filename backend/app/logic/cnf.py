@@ -248,7 +248,7 @@ class CNFConverter:
             else:
                 # Skolem function f(x1, ..., xk)
                 replacement_term = FunctionTerm(skolem_name, [Variable(u) for u in universals])
-            
+
             # Substitute existential variable throughout body
             body_substituted = self._substitute_in_formula(f.body, f.var_name, replacement_term)
             return self._skolemize(body_substituted, universals)
