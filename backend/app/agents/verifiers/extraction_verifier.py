@@ -92,7 +92,8 @@ class ExtractionVerifier:
             nd = clause.params.notice_days
             # Check digit or word presence
             word_map = {30: "thirty", 60: "sixty", 90: "ninety", 15: "fifteen", 7: "seven", 14: "fourteen"}
-            num_in_text = (str(nd) in text) or (word_map.get(nd, "") in text_lower) or ("one month" in text_lower and nd == 30)
+            word_val = word_map.get(nd)
+            num_in_text = (str(nd) in text) or (bool(word_val) and word_val in text_lower) or ("one month" in text_lower and nd == 30)
             if not num_in_text:
                 grounding_errors.append(f"Notice days '{nd}' ungrounded in text")
                 clause.params.notice_days = None
@@ -105,9 +106,14 @@ class ExtractionVerifier:
 
         # Check evidence quote is verbatim
         if clause.evidence_quote not in text:
-            # Fallback to first line
             clause.evidence_quote = text.split("\n")[0][:100]
             grounding_errors.append("Evidence quote was not verbatim substring; adjusted to literal segment.")
+
+        # Check party grounding
+        if clause.party == Party.LANDLORD and not any(w in text_lower for w in ["landlord", "lessor", "owner"]):
+            grounding_errors.append("Party 'landlord' ungrounded in clause text.")
+        elif clause.party == Party.TENANT and not any(w in text_lower for w in ["tenant", "lessee"]):
+            grounding_errors.append("Party 'tenant' ungrounded in clause text.")
 
         grounding_passed = len(grounding_errors) == 0
         checks.append(VerificationCheck(
@@ -131,6 +137,10 @@ class ExtractionVerifier:
         if clause.modality != Modality.DEFINITION and sec_res["modality"] != Modality.DEFINITION:
             if clause.modality != sec_res["modality"]:
                 disagreements.append(f"Modality mismatch: {clause.modality.value} vs {sec_res['modality'].value}")
+
+        if clause.party != Party.BOTH and sec_res["party"] != Party.BOTH:
+            if clause.party != sec_res["party"]:
+                disagreements.append(f"Party mismatch: {clause.party.value} vs {sec_res['party'].value}")
 
         dual_pass_passed = len(disagreements) == 0
         checks.append(VerificationCheck(

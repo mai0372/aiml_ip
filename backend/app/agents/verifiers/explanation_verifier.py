@@ -63,17 +63,31 @@ class ExplanationVerifier:
 
         # Check 3: Legal Risk Statutory Source Verification
         if finding.kind == FindingKind.LEGAL_RISK:
+            KNOWN_STATUTES = {
+                "Model Tenancy Act 2021",
+                "Transfer of Property Act 1882",
+                "Indian Contract Act 1872",
+                "Registration Act 1908"
+            }
+            statute_recognized = bool(finding.source and finding.source.statute_name in KNOWN_STATUTES)
             has_source_url = bool(finding.source and finding.source.source_url)
             has_source_text = bool(finding.source and finding.source.source_text.strip())
             is_reviewed = bool(finding.source and finding.source.reviewed)
 
-            source_complete = has_source_url and has_source_text and is_reviewed
+            source_valid = statute_recognized and has_source_url
+            source_certified = source_valid and has_source_text and is_reviewed
+
+            detail_msg = "Official statute citation certified by legal practitioner" if source_certified else (
+                f"Unrecognized or unverified statute citation: '{finding.source.statute_name if finding.source else 'None'}'"
+                if not statute_recognized else "Unreviewed rule (source text pending advocate review)"
+            )
+
             checks.append(VerificationCheck(
                 name="Statutory Certification",
-                passed=source_complete,
-                detail="Official statute citation certified by legal practitioner" if source_complete else "Unreviewed rule (source text pending advocate review)"
+                passed=source_certified,
+                detail=detail_msg
             ))
-            if not source_complete:
+            if not source_certified:
                 is_verified = False
 
         # Combine with existing checks if any
