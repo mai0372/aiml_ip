@@ -1,15 +1,15 @@
 # ClauseLens Evaluation & Benchmark Report
 
-**Date:** 2026-11-06 15:37:13 UTC  
+**Date:** 2026-11-07 00:22:29 UTC  
 **Evaluation Environment:** Local CPU, Deterministic Offline Mode (zero network dependency)
 
 ## 1. Executive Summary Table
 
 | Dataset / Sample | Clauses | Expected | Seg. Acc | Found Conflicts | Expected Conflicts | Conflict Precision | Conflict Recall | Rule Recall | Total Latency |
 |---|---|---|---|---|---|---|---|---|---|
-| `sample_a_fair.txt` | 7 | 7 | 100.0% | 0 | 0 | 100.0% | 100.0% | 100.0% | 5.53 ms |
-| `sample_b_problematic.txt` | 16 | 16 | 100.0% | 2 | 2 | 100.0% | 100.0% | 100.0% | 13.1 ms |
-| `sample_c_messy.txt` | 8 | 8 | 100.0% | 0 | 0 | 100.0% | 100.0% | 100.0% | 2.88 ms |
+| `sample_a_fair.txt` | 7 | 7 | 100.0% | 0 | 0 | 100.0% | 100.0% | 100.0% | 4.52 ms |
+| `sample_b_problematic.txt` | 16 | 16 | 100.0% | 2 | 2 | 100.0% | 100.0% | 100.0% | 16.85 ms |
+| `sample_c_messy.txt` | 8 | 8 | 100.0% | 0 | 0 | 100.0% | 100.0% | 100.0% | 3.07 ms |
 
 ## 2. Adversarial Verifier Integrity Test (5 Injected Corruptions)
 
@@ -29,14 +29,14 @@
 | Stage | Name | Latency (ms) | Notes |
 |---|---|---|---|
 | `ingest` | Ingest Stage | 0.00 ms | Verified deterministic execution |
-| `segment` | Segment Stage | 1.00 ms | Verified deterministic execution |
+| `segment` | Segment Stage | 2.00 ms | Verified deterministic execution |
 | `extract` | Extract Stage | 1.00 ms | Verified deterministic execution |
 | `verify_extraction` | Verify_extraction Stage | 0.00 ms | Verified deterministic execution |
 | `translate` | Translate Stage | 2.00 ms | Verified deterministic execution |
-| `reason` | Reason Stage | 5.00 ms | Verified deterministic execution |
+| `reason` | Reason Stage | 6.00 ms | Verified deterministic execution |
 | `retrieve_rules` | Retrieve_rules Stage | 0.00 ms | Verified deterministic execution |
 | `explain` | Explain Stage | 0.00 ms | Verified deterministic execution |
-| **Total Pipeline** | Full End-to-End | **13.10 ms** | Well below 5000 ms budget (< 0.2s) |
+| **Total Pipeline** | Full End-to-End | **16.85 ms** | Well below 5000 ms budget (< 0.2s) |
 
 ## 4. Acceptance Criteria Verification
 

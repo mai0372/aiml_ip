@@ -154,3 +154,4 @@ The formal core is strictly titled **"Logic-Based Contract Compliance Engine"**:
 ## 7. Final Assessment
 
 The ClauseLens platform is verified, tested, and ready for deployment.
+
